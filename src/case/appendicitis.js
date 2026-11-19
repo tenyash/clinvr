@@ -1,0 +1,205 @@
+/**
+ * Single scripted teaching scenario for the ClinVR prototype.
+ *
+ * This is illustrative educational content, not a clinical guideline or a
+ * validated assessment. A qualified medical educator should review it before
+ * teaching use.
+ */
+export const appendicitisCase = {
+  id: "acute-appendicitis-01",
+  title: "Abdominal pain: a focused assessment",
+  specialty: "General surgery",
+  level: "Undergraduate clinical skills",
+  estimatedMinutes: 8,
+  summary: "Explore migratory abdominal pain, focused findings, and a safe next step.",
+  objectives: ["Take a structured abdominal-pain history", "Review focused findings", "Explain a safe next step"],
+  tags: ["abdominal pain", "history", "general surgery"],
+  patient: {
+    name: "Arjun Mehta",
+    age: 22,
+    pronouns: "he/him",
+    opening: "Doctor, I have had a bad stomach ache since this morning.",
+    appearance: "Looks uncomfortable and prefers to lie still.",
+    vitals: [
+      { label: "Temperature", value: "38.0", unit: "°C" },
+      { label: "Heart rate", value: "102", unit: "bpm" },
+      { label: "Blood pressure", value: "118/72", unit: "mmHg" },
+      { label: "Respiratory rate", value: "18", unit: "/min" },
+      { label: "Oxygen saturation", value: "99", unit: "%" },
+    ],
+  },
+  history: [
+    {
+      id: "onset",
+      label: "Onset and duration",
+      prompt: "When did the pain start?",
+      answer: "It started about 12 hours ago, quite gradually.",
+      keywords: ["when", "start", "began", "onset", "duration", "how long"],
+      points: 2,
+    },
+    {
+      id: "site-migration",
+      label: "Site and migration",
+      prompt: "Where did it begin, and where is it now?",
+      answer: "It began around my belly button and has moved to the lower right side.",
+      keywords: ["where", "site", "location", "move", "moved", "spread", "travel", "radiat"],
+      points: 3,
+    },
+    {
+      id: "character-severity",
+      label: "Character and severity",
+      prompt: "What does the pain feel like, and how bad is it?",
+      answer: "It is a constant ache, getting sharper. It is about a 7 out of 10 now.",
+      keywords: ["feel", "character", "sharp", "dull", "severity", "severe", "scale", "out of ten", "worse"],
+      points: 2,
+    },
+    {
+      id: "nausea-vomiting",
+      label: "Nausea and vomiting",
+      prompt: "Have you felt sick or vomited?",
+      answer: "I feel nauseated and have vomited twice since the pain started.",
+      keywords: ["nausea", "sick", "vomit", "thrown up"],
+      points: 2,
+    },
+    {
+      id: "fever-appetite",
+      label: "Fever and appetite",
+      prompt: "Any fever, chills, or change in appetite?",
+      answer: "I felt feverish and I have not wanted to eat today.",
+      keywords: ["fever", "temperature", "chill", "appetite", "eating", "hungry"],
+      points: 2,
+    },
+    {
+      id: "bowel",
+      label: "Bowel symptoms",
+      prompt: "Any diarrhoea, constipation, or change in bowel movements?",
+      answer: "No diarrhoea or constipation. My bowel movements have been usual.",
+      keywords: ["bowel", "stool", "motion", "diarr", "constipat", "wind", "pass stool"],
+      points: 1,
+    },
+    {
+      id: "urinary",
+      label: "Urinary symptoms",
+      prompt: "Any pain when passing urine, frequency, or blood in your urine?",
+      answer: "No pain or change when I pass urine, and I have not seen blood.",
+      keywords: ["urin", "urine", "pee", "water", "frequency", "blood", "dysuria"],
+      points: 1,
+    },
+    {
+      id: "past-history",
+      label: "Medical history and medicines",
+      prompt: "Do you have medical conditions, take medicines, or have allergies?",
+      answer: "I am usually well, take no regular medicines, and have no known allergies.",
+      keywords: ["medical history", "condition", "medicine", "medication", "drug", "allerg", "past illness"],
+      points: 1,
+    },
+  ],
+  fallbackResponse: "I am not sure. Is there something specific you would like to ask about my pain or symptoms?",
+  examination: [
+    {
+      id: "vitals",
+      label: "Review observations",
+      finding: "Temperature 38.0 °C and heart rate 102 bpm; blood pressure and breathing are stable in this scenario.",
+      points: 2,
+    },
+    {
+      id: "general",
+      label: "General appearance and comfort",
+      finding: "Arjun looks uncomfortable and prefers to lie still. Explain the examination and ask permission before proceeding.",
+      points: 1,
+    },
+    {
+      id: "abdomen",
+      label: "Focused abdominal examination",
+      finding: "The abdomen is soft with focal right lower quadrant tenderness and guarding. There is pain on release in that area.",
+      points: 3,
+    },
+    {
+      id: "focused-signs",
+      label: "Consider relevant focused signs",
+      finding: "A focused examination may add information, but no single maneuver confirms or excludes the diagnosis.",
+      points: 1,
+    },
+  ],
+  investigations: [
+    {
+      id: "cbc",
+      label: "Full blood count",
+      result: "White cell count 14.8 × 10⁹/L with neutrophil predominance; haemoglobin and platelets are within the scenario reference range.",
+      interpretation: "Inflammatory pattern in this scenario; interpret alongside the history and examination.",
+      points: 2,
+    },
+    {
+      id: "crp",
+      label: "C-reactive protein",
+      result: "CRP 38 mg/L.",
+      interpretation: "Raised inflammatory marker in this scenario; it is not diagnostic on its own.",
+      points: 1,
+    },
+    {
+      id: "urinalysis",
+      label: "Urinalysis",
+      result: "Trace ketones; no blood or nitrites in this scenario.",
+      interpretation: "The result does not suggest a urinary cause here, but tests must be interpreted in clinical context.",
+      points: 1,
+    },
+    {
+      id: "ultrasound",
+      label: "Abdominal ultrasound",
+      result: "The report describes a non-compressible, 8 mm blind-ending tubular structure in the right lower abdomen with adjacent inflammatory change. No collection is seen.",
+      interpretation: "Imaging is reported as supportive of acute appendicitis in this teaching case.",
+      points: 3,
+    },
+  ],
+  // Only these scenario-focused investigations contribute points. Other reports
+  // remain available for discussion but do not reward ordering every test.
+  investigationFocusIds: ["cbc", "ultrasound"],
+  diagnoses: [
+    { id: "appendicitis", label: "Acute appendicitis" },
+    { id: "gastroenteritis", label: "Acute gastroenteritis" },
+    { id: "renal-colic", label: "Right ureteric stone" },
+    { id: "mesenteric-adenitis", label: "Mesenteric adenitis" },
+  ],
+  correctDiagnosisId: "appendicitis",
+  diagnosisPoints: 4,
+  management: [
+    {
+      id: "urgent-review",
+      label: "Keep under urgent clinical review, seek senior/surgical assessment, and provide appropriate supportive care while following local protocols.",
+      feedback: "Appropriate scenario plan: prompt clinical review and supportive care, with decisions guided by the treating team and local protocols.",
+      points: 4,
+      recommended: true,
+    },
+    {
+      id: "discharge",
+      label: "Discharge with routine follow-up and no further assessment.",
+      feedback: "This plan does not address the concerning features in the scenario. Reconsider the urgency of further clinical assessment.",
+      points: 0,
+      recommended: false,
+    },
+    {
+      id: "wait-only",
+      label: "Wait for symptoms to settle before arranging review.",
+      feedback: "A wait-only plan does not respond to the concerning findings presented. Seek timely clinical review in this teaching scenario.",
+      points: 0,
+      recommended: false,
+    },
+  ],
+  rubric: {
+    historyMax: 14,
+    examinationMax: 7,
+    investigationsMax: 5,
+    diagnosisMax: 4,
+    managementMax: 4,
+    maxScore: 34,
+  },
+  assessment: {
+    feedback: {
+      historyIncomplete: "Ask about pain onset and movement, associated symptoms, and relevant bowel, urinary, and medical history.",
+      examinationIncomplete: "Review observations and perform a focused abdominal examination, explaining the steps and seeking permission.",
+      investigationsIncomplete: "Review the scenario-focused reports and interpret them alongside the history and examination.",
+      diagnosisIncorrect: "Reconsider the pain pattern, focused findings, and simulated imaging report.",
+    },
+  },
+  educationalNotice: "This is an unreviewed simulated educational case, not medical advice or a validated OSCE. Clinical details and scoring require review by qualified faculty before educational deployment.",
+};

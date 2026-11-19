@@ -1,0 +1,549 @@
+.clinvr-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 320px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #dbe7e5;
+  isolation: isolate;
+}
+
+.clinvr-scene canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+.clinvr-scene-fallback {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, transparent 0 65%, rgba(115, 143, 136, .12) 65.2%, transparent 65.8%),
+    linear-gradient(180deg, #edf4f0 0%, #e9f1ed 60%, #d9e5e1 60.1%, #cbd9d5 100%);
+}
+
+.clinvr-scene-fallback::before {
+  position: absolute;
+  inset: 0 0 39%;
+  content: "";
+  background: radial-gradient(ellipse at 48% 85%, rgba(255, 255, 255, .68), transparent 60%);
+}
+
+.clinvr-scene-fallback::after {
+  position: absolute;
+  z-index: 0;
+  right: -5%;
+  bottom: -3%;
+  left: -5%;
+  height: 42%;
+  content: "";
+  background:
+    repeating-linear-gradient(0deg, transparent 0 36px, rgba(255, 255, 255, .14) 37px 38px),
+    linear-gradient(145deg, #d8e4df, #becfca);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.clinvr-fallback-window {
+  position: absolute;
+  z-index: 1;
+  top: 12%;
+  left: 12%;
+  width: 28%;
+  height: 26%;
+  border: 8px solid #fff;
+  border-radius: 5px;
+  background:
+    linear-gradient(90deg, transparent 49%, #fff 49.5% 50.5%, transparent 51%),
+    linear-gradient(180deg, transparent 49%, #fff 49.5% 50.5%, transparent 51%),
+    linear-gradient(180deg, #c6e5e5 0 55%, #acd0bb 55% 100%);
+  box-shadow: 0 8px 18px rgba(58, 83, 75, .08);
+}
+
+.clinvr-fallback-window span {
+  position: absolute;
+  right: -10px;
+  bottom: -15px;
+  left: -10px;
+  height: 10px;
+  border-radius: 2px;
+  background: #fff;
+}
+
+.clinvr-fallback-cabinet {
+  position: absolute;
+  z-index: 1;
+  top: 15%;
+  right: 8%;
+  display: flex;
+  width: 25%;
+  height: 20%;
+  align-items: center;
+  justify-content: space-evenly;
+  border: 1px solid #d4dfdb;
+  border-radius: 6px;
+  background: #e0e9e5;
+  box-shadow: 0 8px 18px rgba(58, 83, 75, .08);
+}
+
+.clinvr-fallback-cabinet::after {
+  position: absolute;
+  right: -3%;
+  bottom: -10px;
+  left: -3%;
+  height: 10px;
+  border-radius: 3px;
+  background: #fff;
+  content: "";
+}
+
+.clinvr-fallback-cabinet i {
+  width: 1px;
+  height: 78%;
+  background: #c3d0cb;
+}
+
+.clinvr-fallback-bed {
+  position: absolute;
+  z-index: 2;
+  bottom: 31%;
+  left: 16%;
+  width: 46%;
+  height: 15%;
+  border: 7px solid #fdfefd;
+  border-radius: 10px;
+  background: #b9d5d1;
+  box-shadow: 0 14px 24px rgba(40, 67, 60, .12);
+  transform: skewY(-2deg);
+}
+
+.clinvr-fallback-bed::before,
+.clinvr-fallback-bed::after {
+  position: absolute;
+  top: 98%;
+  width: 7px;
+  height: 65px;
+  border-radius: 3px;
+  background: #91a49f;
+  content: "";
+}
+
+.clinvr-fallback-bed::before { left: 8%; }
+.clinvr-fallback-bed::after { right: 8%; }
+
+.clinvr-fallback-bed-base {
+  position: absolute;
+  right: 5%;
+  bottom: -78px;
+  left: 5%;
+  height: 8px;
+  border-radius: 5px;
+  background: #91a49f;
+}
+
+.clinvr-fallback-monitor {
+  position: absolute;
+  z-index: 1;
+  bottom: 38%;
+  left: 7%;
+  width: 11%;
+  height: 14%;
+  border: 6px solid #d5dfdc;
+  border-radius: 8px;
+  background: #a8cdbf;
+  box-shadow: 0 5px 12px rgba(35, 59, 53, .11);
+}
+
+.clinvr-fallback-monitor i {
+  position: absolute;
+  top: 49%;
+  right: 15%;
+  left: 15%;
+  height: 2px;
+  background: #eaf8ed;
+  box-shadow: 10px -7px 0 -0.3px #eaf8ed, 20px 4px 0 -0.3px #eaf8ed;
+}
+
+.clinvr-fallback-monitor span {
+  position: absolute;
+  top: 100%;
+  left: 46%;
+  width: 8%;
+  height: 48px;
+  background: #8fa09c;
+}
+
+.clinvr-fallback-patient {
+  position: absolute;
+  z-index: 3;
+  right: 22%;
+  bottom: 8%;
+  width: 25%;
+  height: 66%;
+  padding: 0;
+  border: 0;
+  outline-offset: 4px;
+  background: transparent;
+  cursor: pointer;
+  transition: filter .18s ease, transform .18s ease;
+}
+
+.clinvr-fallback-patient:hover {
+  filter: brightness(1.05);
+  transform: translateY(-2px);
+}
+
+.clinvr-fallback-head {
+  position: absolute;
+  top: 6%;
+  left: 34%;
+  width: 33%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #bd8469;
+  box-shadow: inset -7px -5px 0 rgba(91, 52, 39, .1);
+}
+
+.clinvr-fallback-hair {
+  position: absolute;
+  z-index: 1;
+  top: 3%;
+  left: 34%;
+  width: 34%;
+  height: 18%;
+  border-radius: 50% 50% 32% 32%;
+  background: #302b2b;
+  transform: rotate(-7deg);
+}
+
+.clinvr-fallback-head i {
+  position: absolute;
+  top: 46%;
+  left: 29%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #3b302e;
+}
+
+.clinvr-fallback-head i:nth-child(2) { left: 67%; }
+
+.clinvr-fallback-head b {
+  position: absolute;
+  bottom: 25%;
+  left: 43%;
+  width: 15%;
+  height: 2px;
+  border-radius: 3px;
+  background: #875e56;
+}
+
+.clinvr-fallback-body {
+  position: absolute;
+  top: 26%;
+  left: 25%;
+  width: 50%;
+  height: 34%;
+  border-radius: 43% 43% 15% 15%;
+  background: #4a9a8f;
+  box-shadow: inset -9px 0 0 rgba(27, 95, 87, .12);
+}
+
+.clinvr-fallback-arm {
+  position: absolute;
+  top: 32%;
+  left: 15%;
+  width: 13%;
+  height: 29%;
+  border-radius: 20px;
+  background: #4a9a8f;
+  transform: rotate(8deg);
+}
+
+.clinvr-fallback-arm::after {
+  position: absolute;
+  bottom: -9px;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #bd8469;
+  content: "";
+}
+
+.clinvr-fallback-arm.right {
+  right: 15%;
+  left: auto;
+  transform: rotate(-8deg);
+}
+
+.clinvr-fallback-leg {
+  position: absolute;
+  top: 56%;
+  left: 26%;
+  width: 24%;
+  height: 31%;
+  border-radius: 0 0 15px 15px;
+  background: #465a6a;
+}
+
+.clinvr-fallback-leg.right { left: 51%; }
+
+.clinvr-fallback-shoe {
+  position: absolute;
+  bottom: 4%;
+  left: 20%;
+  width: 30%;
+  height: 7%;
+  border-radius: 50% 8px 8px 50%;
+  background: #f4f1eb;
+}
+
+.clinvr-fallback-shoe.right { left: 48%; }
+
+.clinvr-fallback-action-ring {
+  position: absolute;
+  z-index: 3;
+  top: 49%;
+  left: 50%;
+  width: 37%;
+  aspect-ratio: 1;
+  border: 2px solid #eead5d;
+  border-radius: 50%;
+  box-shadow: 0 0 0 6px rgba(238, 173, 93, .14), 0 0 20px rgba(238, 173, 93, .36);
+  transform: translate(-50%, -50%);
+  animation: clinvr-exam-pulse 1.6s ease-out infinite;
+}
+
+.clinvr-fallback-action-ring.chest { top: 37%; }
+.clinvr-fallback-action-ring.head { top: 15%; width: 34%; }
+
+.clinvr-fallback-doctor {
+  position: absolute;
+  z-index: 3;
+  bottom: 8%;
+  left: 75%;
+  width: 17%;
+  height: 67%;
+  pointer-events: none;
+}
+
+.clinvr-doctor-head {
+  position: absolute;
+  top: 6%;
+  left: 34%;
+  width: 34%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #a96f59;
+}
+
+.clinvr-doctor-hair {
+  position: absolute;
+  z-index: 1;
+  top: 3%;
+  left: 34%;
+  width: 35%;
+  height: 16%;
+  border-radius: 50% 50% 30% 30%;
+  background: #252b29;
+}
+
+.clinvr-doctor-head i {
+  position: absolute;
+  top: 47%;
+  left: 28%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #302824;
+}
+
+.clinvr-doctor-head i:nth-child(2) { left: 68%; }
+
+.clinvr-doctor-head b {
+  position: absolute;
+  bottom: 24%;
+  left: 43%;
+  width: 15%;
+  height: 2px;
+  border-radius: 3px;
+  background: #805a50;
+}
+
+.clinvr-doctor-body {
+  position: absolute;
+  top: 25%;
+  left: 26%;
+  width: 48%;
+  height: 32%;
+  border-radius: 42% 42% 8% 8%;
+  background: #548b7b;
+}
+
+.clinvr-doctor-coat {
+  position: absolute;
+  z-index: 1;
+  top: 24%;
+  left: 23%;
+  width: 28%;
+  height: 35%;
+  border-radius: 20% 5% 6% 10%;
+  background: #f5f7f2;
+  transform: rotate(2deg);
+}
+
+.clinvr-doctor-coat.right {
+  left: 49%;
+  border-radius: 5% 20% 10% 6%;
+  transform: rotate(-2deg);
+}
+
+.clinvr-doctor-arm {
+  position: absolute;
+  top: 29%;
+  left: 13%;
+  width: 13%;
+  height: 32%;
+  border-radius: 20px;
+  background: #f5f7f2;
+  transform: rotate(7deg);
+}
+
+.clinvr-doctor-arm::after {
+  position: absolute;
+  bottom: -7px;
+  left: 5%;
+  width: 90%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #a96f59;
+  content: "";
+}
+
+.clinvr-doctor-arm.right {
+  right: 13%;
+  left: auto;
+  transform: rotate(-7deg);
+}
+
+.clinvr-doctor-leg {
+  position: absolute;
+  top: 55%;
+  left: 28%;
+  width: 21%;
+  height: 35%;
+  border-radius: 0 0 12px 12px;
+  background: #3d515c;
+}
+
+.clinvr-doctor-leg.right { left: 51%; }
+
+.clinvr-doctor-shoe {
+  position: absolute;
+  bottom: 3%;
+  left: 20%;
+  width: 33%;
+  height: 7%;
+  border-radius: 50% 6px 6px 50%;
+  background: #f6f7f4;
+}
+
+.clinvr-doctor-shoe.right { left: 48%; }
+
+.clinvr-doctor-badge {
+  position: absolute;
+  z-index: 2;
+  top: 37%;
+  left: 57%;
+  width: 7%;
+  height: 7%;
+  border: 1px solid rgba(129, 105, 64, .25);
+  border-radius: 2px;
+  background: #e7b66f;
+}
+
+.clinvr-exam-indicator {
+  position: absolute;
+  z-index: 6;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100% - 28px);
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 255, 255, .85);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .9);
+  color: #8a6937;
+  font: 600 11px/1.2 system-ui, sans-serif;
+  box-shadow: 0 5px 18px rgba(42, 62, 56, .1);
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+}
+
+.clinvr-exam-indicator strong {
+  overflow: hidden;
+  color: #4b6356;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.clinvr-exam-pulse {
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #eead5d;
+  box-shadow: 0 0 0 3px rgba(238, 173, 93, .2);
+  animation: clinvr-exam-pulse 1.6s ease-out infinite;
+}
+
+@keyframes clinvr-exam-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(238, 173, 93, .45); }
+  100% { box-shadow: 0 0 0 12px rgba(238, 173, 93, 0); }
+}
+
+.clinvr-fallback-caption {
+  position: absolute;
+  z-index: 4;
+  right: 18px;
+  bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 13px;
+  border: 1px solid rgba(255, 255, 255, .78);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .82);
+  color: #526763;
+  font: 600 12px/1.2 system-ui, sans-serif;
+  box-shadow: 0 4px 16px rgba(43, 65, 60, .08);
+}
+
+.clinvr-fallback-status {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #55a58b;
+  box-shadow: 0 0 0 3px rgba(85, 165, 139, .15);
+}
+
+@media (max-width: 560px) {
+  .clinvr-scene { min-height: 260px; border-radius: 14px; }
+  .clinvr-fallback-bed::before,
+  .clinvr-fallback-bed::after { height: 44px; }
+  .clinvr-fallback-bed-base { bottom: -56px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clinvr-fallback-patient { transition: none; }
+  .clinvr-fallback-action-ring,
+  .clinvr-exam-pulse { animation: none; }
+}

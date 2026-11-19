@@ -1,0 +1,7 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { loadProgress, saveAttempt, clearProgress, loadDraft, saveDraft, clearDraft } from '../src/storage.js';
+function memory() { const m = new Map(); return { getItem:k=>m.get(k) ?? null, setItem:(k,v)=>m.set(k,v), removeItem:k=>m.delete(k) }; }
+test('progress survives reload and can be cleared',()=>{const s=memory();assert.equal(saveAttempt({caseId:'case-1',caseTitle:'Scenario',earned:4,max:5,percent:80},s),true);const data=loadProgress(s);assert.equal(data.attempts.length,1);assert.equal(data.attempts[0].percent,80);assert.equal(clearProgress(s),true);assert.deepEqual(loadProgress(s).attempts,[])});
+test('draft is scoped to a case and can be cleared',()=>{const s=memory();assert.equal(saveDraft('case-1',{caseId:'case-1',askedHistory:['onset'],completedExams:[],orderedInvestigations:[]},s),true);assert.equal(loadDraft(s).caseId,'case-1');assert.deepEqual(loadDraft(s).session.askedHistory,['onset']);clearDraft(s);assert.equal(loadDraft(s),null)});
+test('storage failures do not crash the encounter',()=>{const broken={getItem(){throw new Error('unavailable')},setItem(){throw new Error('unavailable')},removeItem(){throw new Error('unavailable')}};assert.deepEqual(loadProgress(broken).attempts,[]);assert.equal(saveAttempt({caseId:'case'},broken),false);assert.equal(loadDraft(broken),null);assert.equal(saveDraft('case',{},broken),false)});
